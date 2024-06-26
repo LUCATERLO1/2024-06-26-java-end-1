@@ -1,14 +1,5 @@
 public class App {
-    public static void main(String[] args) throws Exception {
-
-        test();
-    }
-
-    public static void test() {
-
-        System.out.println("Hello, World!");
-    }
-}
+    
 
 /**
  * TODO:
@@ -55,3 +46,35 @@ public class App {
  * telefono non validi.
  * 
  */
+
+
+ public static void main(String[] args) throws Exception {
+        
+    // test esercizio 1
+    System.out.println("--------------------");
+    Prenotazioni teatro = new Prenotazioni(18);
+    teatro.prenota();
+    teatro.prenota();
+    teatro.prenota();
+    teatro.annulla(3);
+    teatro.disponibili(1);
+    teatro.disponibili(14);
+    System.out.println("--------------------");
+
+
+// test esercizio 2
+ 
+    
+    Studenti studente = new Studenti("Luca Terlizzi", "8234513887");
+    studente.addVoto(30);
+    studente.addVoto(18);
+    try {
+        studente.print();
+        studente.addVoto(3);
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+    }
+    System.out.println("\n--------------------\n");
+
+    }    
+}
