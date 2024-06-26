@@ -76,5 +76,87 @@ public class App {
     }
     System.out.println("\n--------------------\n");
 
-    }    
+
+    // test esercizio 3
+
+
+    ContoBancario conto = new ContoBancario();
+
+    conto.addMoney(200.0);
+    System.out.println("Saldo dopo il deposito: " + conto.getConto());
+
+    try {
+        conto.retrieveMoney(100.0);
+        System.out.println("Saldo dopo il prelievo: " + conto.getConto());
+    } catch (IllegalArgumentException e) {
+        System.out.println("Impossibile prelevare denaro: " + e.getMessage());
+    }
+
+    try {
+        conto.retrieveMoney(140.0);
+        System.out.println("Saldo dopo il secondo prelievo: " + conto.getConto());
+    } catch (IllegalArgumentException e) {
+        System.out.println("Impossibile prelevare denaro: " + e.getMessage());
+    }
+
+    try {
+        conto.addMoney(-40.0);
+        System.out.println("Saldo dopo l'aggiunta di denaro negativo: " + conto.getConto());
+    } catch (IllegalArgumentException e) {
+        System.out.println("Impossibile aggiungere denaro negativo: " + e.getMessage());
+    }
+    System.out.println("\n--------------------\n");
+
+
+
+
+    // test esercizio 4
+    
+    ElencoTelefonico elenco = new ElencoTelefonico();
+   
+
+    Contatto contatto1 = new Contatto("Paulo Dybala", "3333333333");
+    Contatto contatto2 = new Contatto("Gainluca Mancini", "3467878999");
+
+    elenco.addContatto(contatto1);
+    elenco.addContatto(contatto2);
+
+    Contatto risultatoRicercaNome = elenco.searchContatto("Paulo Dybala");
+    if (risultatoRicercaNome != null) {
+        System.out.println("Contatto trovato per nome: " + risultatoRicercaNome.getNome() + ", Numero di telefono: " + risultatoRicercaNome.getNumeroDiTelefono());
+    } else {
+        System.out.println("Contatto non trovato per nome.");
+    }
+
+    Contatto risultatoRicercaNumero = elenco.searchContattoWithNumber("3467878999");
+    if (risultatoRicercaNumero != null) {
+        System.out.println("Contatto trovato per numero di telefono: " + risultatoRicercaNumero.getNome() + ", Numero di telefono: " + risultatoRicercaNumero.getNumeroDiTelefono());
+    } else {
+        System.out.println("Contatto non trovato per numero di telefono.");
+    }
+
+    elenco.removeContatto(contatto1);
+    System.out.println("Elenco dopo la rimozione");
+    for (Contatto contatto : elenco.getListaDiContatti()) {
+        System.out.println(contatto.getNome() + ", " + contatto.getNumeroDiTelefono());
+    }
+
+    try {
+        elenco.addContatto(new Contatto(null, null));
+    } catch (IllegalArgumentException e) {
+        System.out.println("Impossibile aggiungere contatto: " + e.getMessage());
+    }
+
+    try {
+        elenco.removeContatto(new Contatto(null, null));
+    } catch (IllegalArgumentException e) {
+        System.out.println("Impossibile rimuovere contatto: " + e.getMessage());
+    }
+
+  } 
+
 }
+
+
+   
+
