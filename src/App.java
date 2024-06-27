@@ -45,12 +45,54 @@ public class App {
  * contatti. Gestisci eventuali eccezioni relative all'inserimento di numeri di
  * telefono non validi.
  * 
- */
+ * ---------------------------------------------------------------------------
+* 
+* ES5: Sistema di Votazione
+* 
+* Crea classi per Candidato e Elettore, dove ogni Elettore può votare per un
+* Candidato. Implementa un meccanismo usando mappe per tenere traccia dei voti
+* ricevuti da ogni candidato. Assicurati di gestire le eccezioni per casi come
+* doppi voti o voti a candidati non esistenti.
+* 
+* ---------------------------------------------------------------------------
+* 
+* ES6: Sistema di Prenotazione Hotel
+* 
+* Definisci classi per Camera, Cliente, e Prenotazione. Utilizza una mappa per
+* associare clienti a prenotazioni e una lista di camere disponibili.
+* Implementa metodi per effettuare, modificare e cancellare prenotazioni,
+* assicurandoti di gestire eccezioni come camere non disponibili o
+* cancellazioni tardive.
+* 
+* ---------------------------------------------------------------------------
+* 
+* ES7: Impiegato e Manager
+* 
+* Crea una classe Impiegato con attributi come nome, salario e metodi per
+* aumentaSalario(int percentuale). Deriva da questa una classe Manager che
+* aggiunge l'attributo bonus. Il metodo aumentaSalario del manager dovrebbe
+* considerare anche il bonus nell'aumento. Mostra come puoi utilizzare il
+* polimorfismo per gestire diversi tipi di impiegati in un array di tipo
+* Impiegato.
+* 
+* ---------------------------------------------------------------------------
+* 
+* ES8: Sistema di Prenotazione Alberghiera
+* 
+* Progetta una classe astratta CameraAlbergo con metodi come calcolaCosto() e
+* numeroLetti(). Deriva da questa diverse classi specifiche come CameraSingola,
+* CameraDoppia e Suite. Implementa calcolaCosto in modo diverso per ogni tipo
+* di camera. Utilizza una collezione per gestire tutte le camere disponibili in
+* un albergo.
+* 
+* ---------------------------------------------------------------------------
 
-
+*/
  public static void main(String[] args) throws Exception {
         
     // test esercizio 1
+
+
     System.out.println("--------------------");
     Prenotazioni teatro = new Prenotazioni(18);
     teatro.prenota();
@@ -152,8 +194,118 @@ public class App {
     } catch (IllegalArgumentException e) {
         System.out.println("Impossibile rimuovere contatto: " + e.getMessage());
     }
+    System.out.println("\n--------------------\n");
+   
 
-  } 
+
+
+    // test esercizio 5
+
+   
+
+        try {
+            Elezione e = new Elezione();
+            System.out.println(e);
+
+            Candidato c1 = new Candidato("Stephan", "ElSharawy", "123456");
+            Candidato c2 = new Candidato("Nicola", "Zalewsky", "654321");
+
+            Elettore e1 = new Elettore("Lameck", "Banda", "abcdef");
+            Elettore e2 = new Elettore("Razvan", "Marin", "ghijkl");
+            Elettore e3 = new Elettore("Dusan", "Vlahovic", "mnopqr");
+            Elettore e4 = new Elettore("Milan", "Djuric", "stuvwx");
+            Elettore e5 = new Elettore("Loftus", "Cheek", "yz1234");
+
+            System.out.println("-------------------------------------------------------------------");
+            System.out.println("c1: " + c1);
+            System.out.println("-------------------------------------------------------------------");
+            System.out.println("c2: " + c2);
+            System.out.println("-------------------------------------------------------------------");
+            System.out.println("e1: " + e1);
+            System.out.println("-------------------------------------------------------------------");
+            System.out.println("e2: " + e2);
+            System.out.println("-------------------------------------------------------------------");
+            System.out.println("e3: " + e3);
+            System.out.println("-------------------------------------------------------------------");
+            System.out.println("e4: " + e4);
+            System.out.println("-------------------------------------------------------------------");
+            System.out.println("e5: " + e5);
+            System.out.println("-------------------------------------------------------------------");
+
+            System.out.println(e);
+            System.out.println("-------------------------------------------------------------------");
+            e.vota(e1, c2);
+            System.out.println(e);
+            System.out.println("-------------------------------------------------------------------");
+            e.vota(e2, c2);
+            System.out.println(e);
+            System.out.println("-------------------------------------------------------------------");
+            e.vota(e3, c1);
+            System.out.println(e);
+            System.out.println("-------------------------------------------------------------------");
+            e.vota(e4, c1);
+            System.out.println(e);
+            System.out.println("-------------------------------------------------------------------");
+            e.vota(e5, c1);
+            System.out.println(e);
+            System.out.println("-------------------------------------------------------------------");
+
+            System.out.println("Eletto: " + e.getEletto());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    
+
+
+
+
+    // test esercizio 6
+
+
+
+        Camera c1 = new Camera(1, "311");
+        Camera c2 = new Camera(1, "312");
+        Camera c3 = new Camera(2, "313");
+        Camera c4 = new Camera(2, "314");
+        Camera c5 = new Camera(3, "315");
+
+        System.out.println(c1);
+        System.out.println(c2);
+        System.out.println(c3);
+        System.out.println(c4);
+        System.out.println(c5);
+
+        System.out.println("-------------------------------------------------------------------");
+
+
+        Cliente cl1 = new Cliente("Ciccio", "Caputo", "123456");
+        Cliente cl2 = new Cliente("Oliver", "Giroud", "654321");
+        Cliente cl3 = new Cliente("Nicolo", "Barella", "abcdef");
+
+        System.out.println(cl1);
+        System.out.println(cl2);
+        System.out.println(cl3);
+
+        System.out.println("-------------------------------------------------------------------");
+
+        Prenotazione p1 = new Prenotazione(c1, cl1);
+        Prenotazione p2 = new Prenotazione(c5, cl3);
+        Prenotazione p3 = new Prenotazione(c2, cl2);
+        Prenotazione p4 = new Prenotazione(c3, cl1);
+        Prenotazione p5 = new Prenotazione(c4, cl3);
+
+        System.out.println(p1);
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println(p2);
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println(p3);
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println(p4);
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println(p5);
+        System.out.println("-------------------------------------------------------------------");
+    }
+
 
 }
 
